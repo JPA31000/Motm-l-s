@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mots Mêlés - Architecture & BTP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>Mots Mêlés : Architecture & BTP</h1>
+        
+        <div class="header-info">
+            <div class="info-box">
+                <h2>Chronomètre</h2>
+                <p id="timer">3:00</p>
+            </div>
+            <div class="info-box">
+                <h2>Score</h2>
+                <p><span id="score">0</span> / 20</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="grid-container">
+                </div>
+            <div class="word-list-container">
+                <h2>Mots à trouver :</h2>
+                <ul id="word-list">
+                    </ul>
+            </div>
+        </div>
+        
+        <button id="start-btn">Commencer la partie</button>
+
+    </div>
+
+    <div id="end-game-overlay" class="hidden">
+        <div id="end-game-box">
+            <h2 id="end-game-title"></h2>
+            <p id="end-game-score"></p>
+            <button id="restart-btn">Rejouer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
