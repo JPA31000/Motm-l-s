@@ -164,13 +164,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- GESTION DE LA SÉLECTION ---
     function addGridEventListeners() {
-        gridContainer.addEventListener('mousedown', handleMouseDown);
-        gridContainer.addEventListener('mouseover', handleMouseOver);
-        document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('mouseleave', () => handleMouseUp()); 
+        gridContainer.addEventListener('pointerdown', handlePointerDown);
+        gridContainer.addEventListener('pointermove', handlePointerMove);
+        gridContainer.addEventListener('pointerup', handlePointerUp);
+        gridContainer.addEventListener('pointercancel', handlePointerUp);
+        document.addEventListener('pointerup', handlePointerUp);
+        document.addEventListener('pointercancel', handlePointerUp);
     }
 
-    function handleMouseDown(e) {
+    function handlePointerDown(e) {
+        e.preventDefault();
         if (!isPlaying || !e.target.classList.contains('cell')) return;
         isSelecting = true;
         currentSelection.forEach(cell => cell.classList.remove('selected'));
@@ -179,7 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.classList.add('selected');
     }
 
-    function handleMouseOver(e) {
+    function handlePointerMove(e) {
+        e.preventDefault();
         if (!isSelecting || !e.target.classList.contains('cell') || currentSelection.includes(e.target)) return;
         const cell = e.target;
         const lastCell = currentSelection[currentSelection.length - 1];
@@ -191,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentSelection.push(cell);
                 cell.classList.add('selected');
             }
-        } 
+        }
         else if (selectionDirection) {
             const expectedCol = parseInt(lastCell.dataset.col) + selectionDirection.x;
             const expectedRow = parseInt(lastCell.dataset.row) + selectionDirection.y;
@@ -202,7 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function handleMouseUp() {
+    function handlePointerUp(e) {
+        e.preventDefault();
         if (!isSelecting) return;
         isSelecting = false;
         if (currentSelection.length > 1) {
