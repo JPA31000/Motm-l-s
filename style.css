@@ -76,6 +76,7 @@ h1 {
     aspect-ratio: 1 / 1;
     width: 100%;
     max-width: 500px;
+    touch-action: none;
 }
 
 .cell {
@@ -194,5 +195,21 @@ button:hover {
     }
     #word-list {
         column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    #grid-container {
+        width: calc(100vw - 10px);
+        grid-template-columns: repeat(15, minmax(0, 1fr));
+    }
+    .cell {
+        font-size: min(4vw, 1em);
+    }
+    .word-list-container {
+        margin-top: 10px;
+    }
+    #word-list {
+        column-count: 1;
     }
 }
