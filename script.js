@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ÉLÉMENTS DU DOM ---
     const gridContainer = document.getElementById('grid-container');
     const wordListElement = document.getElementById('word-list');
+    const wordListContainer = document.getElementById('word-list-container');
     const scoreElement = document.getElementById('score');
     const timerElement = document.getElementById('timer');
     const startBtn = document.getElementById('start-btn');
+    const toggleWordListBtn = document.getElementById('toggle-word-list');
     const restartBtn = document.getElementById('restart-btn');
     const endGameOverlay = document.getElementById('end-game-overlay');
     const endGameTitle = document.getElementById('end-game-title');
@@ -124,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
         renderWordList();
         currentSelection = [];
         selectionDirection = null;
+        wordListContainer.classList.remove('show');
+        toggleWordListBtn.textContent = 'Afficher les mots';
     }
 
     function startGame() {
@@ -244,6 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ajout des lignes manquantes ici !
     startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', resetGame);
+    toggleWordListBtn.addEventListener('click', () => {
+        wordListContainer.classList.toggle('show');
+        toggleWordListBtn.textContent = wordListContainer.classList.contains('show') ? 'Masquer les mots' : 'Afficher les mots';
+    });
     addGridEventListeners();
 
     // --- INITIALISATION AU DÉMARRAGE ---

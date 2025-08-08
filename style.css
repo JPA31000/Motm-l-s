@@ -199,17 +199,38 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    .game-container {
+        padding: 10px;
+    }
     #grid-container {
-        width: calc(100vw - 10px);
-        grid-template-columns: repeat(15, minmax(0, 1fr));
+        --cell-size: calc((100vmin - 36px) / 15);
+        width: calc(var(--cell-size) * 15);
+        height: calc(var(--cell-size) * 15);
+        grid-template-columns: repeat(15, var(--cell-size));
     }
     .cell {
-        font-size: min(4vw, 1em);
+        width: var(--cell-size);
+        height: var(--cell-size);
+        font-size: calc(var(--cell-size) * 0.6);
     }
     .word-list-container {
         margin-top: 10px;
+        display: none;
+    }
+    .word-list-container.show {
+        display: block;
     }
     #word-list {
         column-count: 1;
     }
+    #toggle-word-list {
+        display: block;
+    }
+}
+
+#toggle-word-list {
+    display: none;
 }
