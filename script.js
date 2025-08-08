@@ -170,6 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.addEventListener('pointercancel', handlePointerUp);
         document.addEventListener('pointerup', handlePointerUp);
         document.addEventListener('pointercancel', handlePointerUp);
+        if (!window.PointerEvent) {
+            gridContainer.addEventListener('touchstart', handlePointerDown, { passive: false });
+            gridContainer.addEventListener('touchmove', handlePointerMove, { passive: false });
+            gridContainer.addEventListener('touchend', handlePointerUp, { passive: false });
+            document.addEventListener('touchend', handlePointerUp, { passive: false });
+        }
     }
 
     function handlePointerDown(e) {
